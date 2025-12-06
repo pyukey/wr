@@ -20,6 +20,6 @@ do pass=$(gen)
   else
     (echo $pass; echo $pass) | passwd $user
   fi
-  out="$out\n$user: $pass"
+  out="$out\n$user,$pass"
 done
 printf "$out\n\n"
