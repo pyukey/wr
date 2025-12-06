@@ -16,10 +16,9 @@ for user in $users
 do pass=$(gen)
   if openssl passwd --help 2>&1 | grep -q '\\6'; then
     hashPass=$(openssl passwd -6 "$pass")
-    #sed -i "s|^$user:[^:]*:|$user:$hashPass:|" /etc/shadow
+    sed -i "s|^$user:[^:]*:|$user:$hashPass:|" /etc/shadow
   else
-    :
-    #(echo $pass; echo $pass) | passwd $user
+    (echo $pass; echo $pass) | passwd $user
   fi
   out="$out\n$user: $pass"
 done
